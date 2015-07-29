@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="map-compare.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+    <script src="loader.js"></script>
+  </head>
+  <body>
+    <div id="global-controls-container">
+      Center point (Lat,Long):<input id="center_lat" type="text" value="43.5" />,<input id="center_long" type="text" value="-80.5">
+    </div>
+    <div id="map-controls-container">
+      <div class="map-controls" id="left-controls">
+        Left map:
+        Tile URL: <input id="left-map-url" type="text" value="https://uwaterloo.ca/map-beta/tiles/default/{z}/{x}/{y}.png" />
+        <input type="button" value="Load Tiles" onclick="loadLeftTiles()" />
+      </div>
+      <div class="map-controls" id="right-controls">
+        Right map:
+        Tile URL: <input id="right-map-url" type="text" value="https://uwaterloo.ca/map-beta/tiles/hc/{z}/{x}/{y}.png" />
+        <input type="button" value="Load Tiles" onclick="loadRightTiles()" />
+      </div>
+    </div>
+    <div id="maps-container">
+        <div class="map-container" id="left-map">
+        </div>
+        <div class="map-container" id="right-map">
+        </div>
+    </div>
+
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", function(event) {
+        initMaps();
+      });
+    </script>
+  </body>
+</html>
