@@ -1,10 +1,36 @@
-#maps-container, #map-controls-container, #global-controls-container{
+body{
+  font-family: 'Open Sans', sans-serif;
+}
+
+#maps-container, #map-controls-container{
   display:flex;
    flex-direction: row;
    flex-wrap: wrap;
    justify-content: flex-start;
    align-content: flex-start;
    align-items: flex-start;
+   padding-left: 5px;
+   padding-right: 5px;
+   padding-top: 5px;
+}
+
+#global-controls-container{
+  display:flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   /*justify-content: flex-start;*/
+   justify-content: center;
+   align-content: flex-start;
+   /*align-items: flex-start;*/
+   align-items: center;
+   padding: 20px;
+}
+
+.load-button{
+  background: #000088;
+  color: #ffffff;
+  border: none;
+  margin-left: 5px;
 }
 
 .map-controls{
@@ -13,7 +39,8 @@
   flex-wrap: wrap;
   flex-grow: 1;
   flex-shrink: 0;
-  flex-basis: 200px
+  flex-basis: 200px;
+
 }
 
 .map-container{
@@ -23,5 +50,6 @@
   flex-grow: 1;
   flex-shrink: 0;
   flex-basis: 200px;
-  height: 700px;
+  height: 500px;
+  margin: 5px;
 }

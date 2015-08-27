@@ -10,10 +10,12 @@ function initMaps(){
 
     left_map.on('moveend',function(e){
       right_map.setView(e.target.getCenter(),e.target.getZoom());
+      updateCenterInputs(e.target);
     });
 
     right_map.on('moveend',function(e){
       left_map.setView(e.target.getCenter(),e.target.getZoom());
+      updateCenterInputs(e.target);
     });
 }
 
