@@ -19,6 +19,7 @@ function initMaps(){
     });
 
     loadTilesFromURL();
+    updateURLInputs();
 }
 
 function loadLeftTiles(){
@@ -59,9 +60,11 @@ function loadTilesFromURL(){
 
   if (left_url != undefined) {
     loadTiles(left_map,left_url);
+    updateLeftURLInput(left_url);
   }
   if (right_url != undefined) {
     loadTiles(right_map,right_url);
+    updateRightURLInput(right_url);
   }
 
 

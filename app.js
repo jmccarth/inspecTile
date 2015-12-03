@@ -4,8 +4,17 @@ function updateCenterInputs(map){
 
     document.getElementById('center_lat').value = lat;
     document.getElementById('center_long').value = lng;
-
 }
+
+function updateLeftURLInput(tile_url){
+  document.getElementById('left-map-url').value = tile_url;
+}
+
+function updateRightURLInput(tile_url){
+  document.getElementById('right-map-url').value = tile_url;
+}
+
+
 
 /**
   addTilesToURL
