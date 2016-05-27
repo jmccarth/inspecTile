@@ -32,9 +32,19 @@
         </div>
     </div>
     <div id="diff-container">
-      The following tiles do not match:
-      <ul id="unmatched_tiles">
-      </ul>
+      <div class="diff-half">
+        The following tiles do not match:
+        <ul id="unmatched_tiles">
+        </ul>
+      </div>
+      <div class="diff-half">
+        <div>Number of tiles with differences: <span id="num_diff_tiles">0</span></div>
+        <div>
+          <p>Flagged tiles:<span id="num_flagged_tiles">0</span></p>
+          <ul id="flagged_tiles">
+          </ul>
+        </div>
+      </div>
     </div>
 
     <script type="text/javascript">
