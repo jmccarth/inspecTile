@@ -35,6 +35,25 @@ function zoomToTileFromID(tile_id){
   var centre = L.latLng(lat,lon);
   left_map.setView(centre,zoom);
   right_map.setView(centre,zoom);
+  highlightTiles(tile_id);
+}
+
+function highlightTiles(tile_id){
+  var matching_tiles = []
+  var tiles = document.getElementsByTagName('img');
+  for (tile in tiles){
+    if (tiles[tile].src != undefined){
+      if (tiles[tile].src.includes(tile_id)){
+        matching_tiles.push(tiles[tile]);
+      }
+    }
+  }
+
+  for (tile in matching_tiles){
+    matching_tiles[tile].style.zIndex = "5000";
+    matching_tiles[tile].style.boxShadow = "0 0 10px black"
+
+  }
 }
 
 // copied from http://wiki.openstreetmap.org/wiki/Slippy_map_tilenames#X_and_Y
