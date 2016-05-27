@@ -19,7 +19,7 @@ function initMaps(){
     });
 
     loadTilesFromURL();
-    updateURLInputs();
+    // updateURLInputs();
 }
 
 function loadLeftTiles(){
@@ -49,20 +49,21 @@ function loadTilesFromURL(){
   var left_url = url.query(true).leftmap;
   var right_url = url.query(true).rightmap;
 
-  // remove trailing slash from URLs if they exist
-  if (left_url.substr(-1) === '/'){
-    var left_url = left_url.substr(0,left_url.length -1);
-  }
-  if (right_url.substr(-1) === '/'){
-    var right_url = right_url.substr(0,right_url.length -1);
-  }
 
 
   if (left_url != undefined) {
+    // remove trailing slash from URLs if they exist
+    if (left_url.substr(-1) === '/'){
+      var left_url = left_url.substr(0,left_url.length -1);
+    }
     loadTiles(left_map,left_url);
     updateLeftURLInput(left_url);
   }
   if (right_url != undefined) {
+    // remove trailing slash from URLs if they exist
+    if (right_url.substr(-1) === '/'){
+      var right_url = right_url.substr(0,right_url.length -1);
+    }
     loadTiles(right_map,right_url);
     updateRightURLInput(right_url);
   }

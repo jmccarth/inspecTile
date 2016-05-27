@@ -53,3 +53,15 @@ body{
   height: 500px;
   margin: 5px;
 }
+
+#diff-container{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 200px;
+  height: 500px;
+  margin: 5px;
+  overflow-y: scroll;
+}

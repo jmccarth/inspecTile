@@ -8,18 +8,20 @@
     <script src="lib/URI.js"></script>
     <script src="loader.js"></script>
     <script src="app.js"></script>
+    <script src="diff.js"></script>
   </head>
   <body>
     <div id="global-controls-container">
       Center point (Lat,Long):<input id="center_lat" type="text" value="43.5" />,<input id="center_long" type="text" value="-80.5">
+      <input type="file" id="diff_file_input" />
     </div>
     <div id="map-controls-container">
       <div class="map-controls" id="left-controls">
-        <label>Left map tile URL <input id="left-map-url" type="text" value="https://uwaterloo.ca/map-beta/tiles/default/{z}/{x}/{y}.png" /></label>
+        <label>Left map tile URL <input id="left-map-url" type="text" value="http://mad-jmccarth-dev/~jmccarth/campus-map-demo/tiles/default/{z}/{x}/{y}.png" /></label>
         <input class='load-button' type="button" value="Load Tiles" onclick="loadLeftTiles()" />
       </div>
       <div class="map-controls" id="right-controls">
-        <label>Right map tile URL <input id="right-map-url" type="text" value="https://uwaterloo.ca/map-beta/tiles/hc/{z}/{x}/{y}.png" /></label>
+        <label>Right map tile URL <input id="right-map-url" type="text" value="http://mad-jmccarth-dev/~jmccarth/campus-map-demo/new-tiles/default/{z}/{x}/{y}.png" /></label>
         <input class='load-button' type="button" value="Load Tiles" onclick="loadRightTiles()" />
       </div>
     </div>
@@ -29,10 +31,17 @@
         <div class="map-container" id="right-map">
         </div>
     </div>
+    <div id="diff-container">
+      The following tiles do not match:
+      <ul id="unmatched_tiles">
+      </ul>
+    </div>
 
     <script type="text/javascript">
       document.addEventListener("DOMContentLoaded", function(event) {
         initMaps();
+
+        document.getElementById('diff_file_input').addEventListener('change',handleFileUpload);
       });
     </script>
   </body>
