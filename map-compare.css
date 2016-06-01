@@ -2,7 +2,7 @@ body{
   font-family: 'Open Sans', sans-serif;
 }
 
-#maps-container, #map-controls-container{
+#maps-container, #map-controls-container, .maps-container{
   display:flex;
    flex-direction: row;
    flex-wrap: wrap;
