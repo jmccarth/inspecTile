@@ -1,4 +1,3 @@
-var map;
 var InspecTileContainer = React.createClass({
   getInitialState: function(){
     return {
@@ -32,11 +31,45 @@ var InspecTileContainer = React.createClass({
 });
 
 var MapsContainer = React.createClass({
+  getInitialState: function(){
+    return{
+      l_lat: 43.5,
+      l_lng: -80.5,
+      l_zoom: 11,
+      r_lat: 43.5,
+      r_lng: -80.5,
+      r_zoom: 11
+    }
+  },
+  updateMapStates:function(lat, lng, zoom){
+    this.setState({
+      l_lat: lat,
+      l_lng: lng,
+      l_zoom: zoom,
+      r_lat: lat,
+      r_lng: lng,
+      r_zoom: zoom
+    });
+  },
   render: function(){
       return (
         <div className='maps-container'>
-          <MapElement id={this.props.left_map_id} tile_url={this.props.left_tile_url} />
-          <MapElement id={this.props.right_map_id} tile_url={this.props.right_tile_url} />
+          <MapElement
+            id={this.props.left_map_id}
+            tile_url={this.props.left_tile_url}
+            lat={this.state.l_lat}
+            lng={this.state.l_lng}
+            zoom={this.state.l_zoom}
+            onViewChange={this.updateMapStates}
+          />
+          <MapElement
+            id={this.props.right_map_id}
+            tile_url={this.props.right_tile_url}
+            lat={this.state.r_lat}
+            lng={this.state.r_lng}
+            zoom={this.state.r_zoom}
+            onViewChange={this.updateMapStates}
+          />
         </div>
       );
   }
@@ -52,6 +85,21 @@ var MapElement = React.createClass({
       map: null
     };
   },
+  componentDidMount: function(){
+    this.init(this.getID());
+  },
+  init: function(id){
+    var new_map = L.map(id).setView([this.props.lat, this.props.lng],this.props.zoom);
+
+    new_map.on('moveend',this.updateToOtherMaps);
+
+    this.setState({
+      map: new_map
+    });
+  },
+  getID: function(){
+    return this.props.id;
+  },
   updateTileURL: function(new_tile_url){
     var new_tile_layer = L.tileLayer(new_tile_url);
     this.setState({
@@ -60,8 +108,8 @@ var MapElement = React.createClass({
     });
     new_tile_layer.addTo(this.state.map);
   },
-  componentDidMount: function(){
-    this.init(this.getID());
+  componentDidUpdate: function(){
+    this.state.map.setView([this.props.lat, this.props.lng], this.props.zoom);
   },
   componentWillReceiveProps: function(nextProps){
     //check if new props have a new tile URL and update if it does
@@ -69,13 +117,8 @@ var MapElement = React.createClass({
       this.updateTileURL(nextProps.tile_url);
     }
   },
-  getID: function(){
-    return this.props.id;
-  },
-  init: function(id){
-    this.setState({
-      map: L.map(id).setView([43.5,-80.5],11)
-    });
+  updateToOtherMaps: function(e){
+    this.props.onViewChange(this.state.map.getCenter().lat,this.state.map.getCenter().lng,this.state.map.getZoom());
   },
   render: function(){
     return(
